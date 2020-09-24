@@ -3,17 +3,7 @@ import { createUrqlClient } from "../utils/createUrqlClient";
 import { usePostsQuery } from "../generated/graphql";
 import Layout from "../components/Layout";
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Icon,
-  IconButton,
-  Link,
-  Stack,
-  Text,
-} from "@chakra-ui/core";
+import { Box, Button, Flex, Heading, Link, Stack, Text } from "@chakra-ui/core";
 import NextLink from "next/link";
 import UpdootSection from "../components/UpdootSection";
 
@@ -31,7 +21,7 @@ const Index = () => {
   return (
     <Layout>
       <Flex>
-        <Heading>LiReddit</Heading>
+        {/* <Heading>LiReddit</Heading> */}
         <NextLink href="/create-post">
           <Link ml="auto">Create post</Link>
         </NextLink>
@@ -45,7 +35,11 @@ const Index = () => {
             <Flex p={5} shadow="md" borderWidth="1px" key={p.id}>
               <UpdootSection post={p} />
               <Box>
-                <Heading fontSize="xl">{p.title}</Heading>
+                <NextLink href="/post/[id]" as={`/post/${p.id}`}>
+                  <Link>
+                    <Heading fontSize="xl">{p.title}</Heading>
+                  </Link>
+                </NextLink>
                 <Text>posted by: {p.creator.username}</Text>
                 <Text mt={4}>{p.textSnippet + "..."}</Text>
               </Box>
